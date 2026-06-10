@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+const pages = await getCollection("pages");
+import { PAYLOAD_URL } from "astro:env/client";
+---
+
+<section
+    id="mission"
+    aria-label="About Us"
+    class="about-us max-w-7xl px-4 relative mx-auto flex flex-col md:flex-row"
+>
+    <div
+        class="w-full md:w-full relative content-center bg-[#D8E6D3] px-10 pt-10 pb-6 pl-13 rounded-xl"
+    >
+        <h2 class="mb-4">{pages[0].data.sections[2].title}</h2>
+        <div set:html={pages[0].data.sections[2].content} class="mb-0 text-lg" />
+    </div>
+    <div class="absolute w-full h-full bg-[#D8E6D3] left-1/2 top-0 -z-10"></div>
+</section>

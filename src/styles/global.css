@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "myriapro";
+    src: url("/assets/MYRIADPRO-REGULAR.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "myriapro-bold";
+    src: url("/assets/MYRIADPRO-BOLD.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "myriapro-light";
+    src: url("/assets/MyriadPro-Light.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@layer base {
+    /* Root Variables */
+    :root {
+        --font-myriapro: "myriapro", sans-serif;
+    }
+
+    /* Base Typography */
+    html {
+        font-family: var(--font-myriapro);
+        scroll-behavior: smooth;
+        color: #294020;
+    }
+
+    body {
+        @apply leading-relaxed;
+        font-family: var(--font-montserrat);
+    }
+
+    main {
+        min-height: calc(100vh - 92px - 100px);
+    }
+
+    /* Headings with Roboto */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-roboto);
+        @apply font-medium leading-tight;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl font-semibold;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl lg:text-4xl font-medium;
+    }
+
+    h4 {
+        @apply text-xl md:text-2xl lg:text-3xl font-medium;
+    }
+
+    h5 {
+        @apply text-lg md:text-xl lg:text-2xl font-medium;
+    }
+
+    h6 {
+        @apply text-base md:text-lg lg:text-xl font-medium;
+    }
+
+    .wp-block-heading {
+        @apply text-4xl font-bold mb-4;
+    }
+
+    /* Body Text */
+    p {
+        @apply mb-4 leading-relaxed;
+    }
+
+    img {
+        @apply max-w-full h-auto;
+        object-fit: cover;
+    }
+    .btn-primary {
+        @apply bg-[#294020] text-white text-lg rounded-full py-4 px-12;
+    }
+}

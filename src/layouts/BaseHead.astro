@@ -1,0 +1,29 @@
+---
+import { getSiteData } from "../data/siteData";
+import { ClientRouter, fade } from "astro:transitions";
+const siteData = await getSiteData();
+const { title = siteData.defaultTitle, description = siteData.defaultDescription } = Astro.props;
+import { PAYLOAD_URL } from "astro:env/client";
+---
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href=`${PAYLOAD_URL}${siteData.favicon_url}` />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href=`${PAYLOAD_URL}${siteData.favicon32_url}`
+    />
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href=`${PAYLOAD_URL}${siteData.faviconApple_url}`
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <ClientRouter />
+</head>

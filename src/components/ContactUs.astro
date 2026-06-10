@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+const pages = await getCollection("pages");
+import { PAYLOAD_URL } from "astro:env/client";
+import Contact from "./Contact.astro";
+import ContactForm from "./ContactForm.astro";
+---
+
+<section
+    id="contact"
+    class="relative isolate max-h-screen overflow-hidden bg-cover"
+    style={`background-image: url(${PAYLOAD_URL}${pages[0].data.sections[6].primaryImage_url});`}
+    transition:name="hero"
+>
+    <div class="flex justify-end max-w-7xl m-auto px-4 py-15">
+        <div class="w-1/2">
+            <div class="bg-[#F5F9F4] rounded-lg p-6 px-10">
+                <h2 class="mb-6">{pages[0].data.sections[6].title}</h2>
+                <Contact />
+                <ContactForm />
+            </div>
+        </div>
+    </div>
+</section>

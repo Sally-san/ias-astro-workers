@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { PAYLOAD_URL } from "astro:env/client";
+type Props = {
+    post: CollectionEntry<"articles">;
+};
+const { post } = Astro.props;
+const { title, featuredImageUrl, tags, slug } = post.data;
+---
+
+<section aria-label="Blog Hero">
+    {
+        featuredImageUrl && (
+            <div
+                role="img"
+                aria-label={title}
+                class="w-full block h-100 bg-cover bg-center"
+                style={`background-image: url('${PAYLOAD_URL}${featuredImageUrl}')`}
+                transition:name={`${slug}`}
+            />
+        )
+    }
+    <div class="max-w-7xl mx-auto mt-10 mb-4 text-left">
+        <h1 class="text-5xl">{title}</h1>
+        <div class="blog-meta">
+            <ul class="tags flex text-xs text-[#294020] justify-between">
+                <div class="flex">
+                    <span class="self-center">Tags:</span>
+                    {
+                        tags.length > 0 ? (
+                            tags.map((tag) => <li class="bg-[#F5F9F4] p-1 m-1">{tag}</li>)
+                        ) : (
+                            <li class="bg-[#F5F9F4] p-1 m-1">Uncategorized</li>
+                        )
+                    }
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>

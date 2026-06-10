@@ -1,0 +1,24 @@
+---
+type Props = {
+    prev?: string;
+    next?: string;
+};
+const { prev, next } = Astro.props;
+---
+
+<div class="pagination text-center flex justify-center items-center gap-4 my-4">
+    {
+        prev && (
+            <a href={prev} class="button">
+                Previous
+            </a>
+        )
+    }
+    {
+        next && (
+            <a href={next} class="button">
+                Next
+            </a>
+        )
+    }
+</div>

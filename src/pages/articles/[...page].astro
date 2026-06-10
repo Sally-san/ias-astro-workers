@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import Paginate from "../../layouts/Paginate.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const articles = await getCollection("articles");
+    return paginate(articles, { pageSize: 16 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<Layout title={`Article - page ${page.currentPage}`}>
+    <div class="max-w-7xl mx-auto p-4 px-4 lg:px-0 pt-30">
+        <h1 class="mb-4">Articles</h1>
+        <a href="/" aria-label="Back to home" class="text-sm text-[#294020] hover:text-[#294020]"
+            >Back to home</a
+        >
+        <div class="blog-list flex gap-4 flex-wrap mt-2 justify-center" transition:name="blogs">
+            {page.data.map((articles) => <ArticleCard article={articles} />)}
+        </div>
+    </div>
+    <!-- <Paginate prev={page.url.prev} next={page.url.next} /> -->
+</Layout>

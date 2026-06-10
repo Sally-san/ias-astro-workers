@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+type Props = {
+    article: CollectionEntry<"articles">;
+};
+const { article } = Astro.props;
+const { title, excerpt, featuredImageUrl, slug } = article.data;
+import { PAYLOAD_URL } from "astro:env/client";
+---
+
+<div
+    class="article-container perspective-dramatic inline-block transition-transform duration-300 ease-out hover:scale-102 overflow-hidden"
+>
+    <a href={`/articles/${slug}`}>
+        <article
+            class="article-card rounded-xl flex overflow-hidden transition-boxshadow duration-300"
+        >
+            <div class="product-info mt-6 py-3 text-sm w-1/2 content-center">
+                <h3 class="overflow-hidden font-bold mb-8">{title}</h3>
+                <div class="h-25 text-lg mb-8">
+                    <p set:html={excerpt ?? ""} />
+                </div>
+                <a
+                    href={`/articles/${slug}`}
+                    aria-label="Learn More About Us"
+                    class="btn-primary w-auto">Read More</a
+                >
+            </div>
+            <div class="tilt-container perspective-dramatic inline-block w-1/2 px-6">
+                {featuredImageUrl && (
+                    <img
+                        src=`${PAYLOAD_URL}${featuredImageUrl}`
+                        alt={title}
+                        class="article-image h-85 w-full object-center object-cover rounded-lg"
+                        width={300}
+                        height={400}
+                        transition:name={`${slug}`}
+                    />
+                )}
+            </div>
+        </article>
+    </a>
+</div>

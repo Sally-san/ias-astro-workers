@@ -1,0 +1,41 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+const pages = await getCollection("pages");
+import { PAYLOAD_URL } from "astro:env/client";
+---
+
+<section
+    id="about"
+    aria-label="About Us"
+    class="about-us max-w-7xl px-4 mx-auto flex flex-col md:flex-row py-10 md:py-18"
+>
+    <div class="w-full md:w-full px-6 md:px-20 lg:w-1/2 lg:pr-8 lg:pl-0 content-center">
+        <h2 class="mb-4">{pages[0].data.sections[1].title}</h2>
+        <div set:html={pages[0].data.sections[1].content} class="mb-10 text-lg" />
+        <a
+            href={pages[0].data.sections[1].primarybutton_url}
+            aria-label="Learn More About Us"
+            class="btn-primary">{pages[0].data.sections[1].primarybutton_label}</a
+        >
+    </div>
+    <div class="hidden lg:flex w-full lg:w-1/2 content-center text-center justify-center px-6">
+        <div class="tilt-container perspective-dramatic inline-block">
+            {
+                (
+                    <img
+                        src=`${PAYLOAD_URL}${pages[0].data.sections[1].primaryImage_url}`
+                        alt="About Us Image"
+                        class="about-image w-auto mx-auto rounded-xl transition-all duration-300 ease-out hover:scale-101 transform-3d hover:shadow-2xl"
+                        width={600}
+                        height={600}
+                        sizes="(min-width: 1024px) 50vw, 0px"
+                        loading="lazy"
+                        decoding="async"
+                        transition:name="about-us"
+                    />
+                )
+            }
+        </div>
+    </div>
+</section>

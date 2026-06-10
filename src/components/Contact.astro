@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+const contact = await getCollection("contacts");
+---
+
+<div class="space-y-6">
+    <div class="space-y-4 text-background text-lg sm:text-xl px-3 md:px-0">
+        <div>
+            <!-- Phone -->
+            <a
+                href="tel:+27713794888"
+                class="flex items-center gap-3 hover:text-background/90 transition-colors mb-1"
+            >
+                <svg
+                    class="h-6 w-6 flex-shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
+                    ></path>
+                </svg>
+
+                <span>+27 71 379 4888</span>
+            </a>
+        </div>
+
+        <!-- Email -->
+        <a
+            href="mailto:drsheikcariemfp@gmail.com"
+            class="flex items-center gap-3 hover:text-background/90 transition-colors"
+        >
+            <svg
+                class="h-6 w-6 flex-shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="M22 7l-10 6L2 7"></path>
+            </svg>
+            <span>drsheikcariemfp@gmail.com</span>
+        </a>
+
+        <!-- Address -->
+        <a
+            href="https://maps.app.goo.gl/hz1x55bNYrpuQFHX8"
+            target="_blank"
+            rel="noopener"
+            class="flex items-start gap-3 hover:text-background transition-colors"
+        >
+            <svg
+                class="h-6 w-6 flex-shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span
+                >{contact[0].data.addresses[0].street}
+                <br />
+                {contact[0].data.addresses[0].city}
+                {contact[0].data.addresses[0].state}
+                {contact[0].data.addresses[0].postalCode}</span
+            >
+        </a>
+    </div>
+</div>

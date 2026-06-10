@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "./ArticleCard.astro";
+const articlesPosts = await getCollection("articles");
+---
+
+<section id="articles" class="blog-section max-w-7xl mx-auto pt-15 px-4">
+    <h2 class="mb-10">Publications and Thought Pieces</h2>
+    <div
+        class="flex-wrap lg:flex-nowrap blog-list flex gap-4 justify-between"
+        transition:name="blogs"
+    >
+        {articlesPosts.slice(0, 1).map((article) => <ArticleCard article={article} />)}
+    </div>
+    <!-- <div class="text-center mt-6">
+        <a href="/blog" class="blog-all button-outline">View More</a>
+    </div> -->
+</section>

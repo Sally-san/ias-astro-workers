@@ -1,0 +1,48 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+const pages = await getCollection("pages");
+import { PAYLOAD_URL } from "astro:env/client";
+---
+
+<section
+    id="services"
+    aria-label="About Us"
+    class="pt-25"
+>
+    <div class="service-title flex max-w-7xl mx-auto gap-8">
+        <div class="lg:w-1/3"></div>
+        <div class="lg:w-2/3"><h2  class="font-bold pl-4">{pages[0].data.sections[3].title}</h2></div>
+    </div>
+    <div class="bg-[#D8E6D3] mt-10">
+        <div class="about-us max-w-7xl px-4 mx-auto flex flex-col md:flex-row gap-16 relative">
+            <div class="hidden lg:flex w-full lg:w-1/3 content-center text-center justify-center relative ">
+                <div class="tilt-container perspective-dramatic inline-block absolute w-full bottom-10">
+                    {
+                        (
+                            <img
+                                src=`${PAYLOAD_URL}${pages[0].data.sections[3].primaryImage_url}`
+                                alt="Services Image"
+                                class="about-image w-full rounded-xl transition-all duration-300 ease-out hover:scale-101 transform-3d hover:shadow-xl"
+                                width={600}
+                                height={600}
+                                sizes="(min-width: 1024px) 50vw, 0px"
+                                loading="lazy"
+                                decoding="async"
+                                transition:name="services"
+                            />
+                        )
+                    }
+                </div>
+            </div>
+            <div class="w-full md:w-full px-6 py-20 md:px-20 lg:w-2/3 lg:pr-8 lg:pl-0 content-center flex align-middle">
+                <div class="lg:w-1/3 content-center justify-items-start">
+                    <h4 class="mb-6 pb-6 border-b pr-12 font-bold">{pages[0].data.sections[3].subtitle}</h4>
+                    <h4 class="mb-6 pb-6 border-b pr-12 font-bold">{pages[0].data.sections[4].title}</h4>
+                    <h4 class="pr-12 font-bold">{pages[0].data.sections[5].title}</h4>
+                </div>
+                <div set:html={pages[0].data.sections[3].content} class="text-lg lg:w-2/3 justify-center content-center" />
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import ArticleHero from "../../components/ArticleHero.astro";
+
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+    const posts = await getCollection("articles");
+    return posts.map((post) => ({
+        params: { page: post.data.slug },
+        props: { post },
+    }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { title, seoMeta, content } = post.data;
+---
+
+<Layout title={title} description={seoMeta ?? ""}>
+    <ArticleHero post={post} />
+    <article class="blog-content max-w-7xl mx-auto py-4 text-lg">
+        <div set:html={content ?? ""} />
+    </article>
+</Layout>
