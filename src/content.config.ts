@@ -27,7 +27,7 @@ const addressSchema = z.object({
 });
 
 const emailSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email().nullable(),
   label: z.string().nullable(),
 });
 
